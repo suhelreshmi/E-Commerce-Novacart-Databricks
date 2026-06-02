@@ -42,16 +42,16 @@ Most beginner pipelines perform full reloads on every run. This project demonstr
                              │  Lakehouse Federation (Unity Catalog)
                              ▼
 ┌─────────────────────────────────────────────────────────────────────┐
-│   BRONZE LAYER  (main.bronze)                                     │
+│   BRONZE LAYER  (main.bronze)                                       │
 │  • Incremental reads using watermark logic                          │
 │  • Append-only Delta tables — immutable audit log                   │
 │  • Control table tracks last processed state per entity             │
-│  • Metadata: ingestion_ts, batch_id, source, ingestion_date       │
+│  • Metadata: ingestion_ts, batch_id, source, ingestion_date         │
 └────────────────────────────┬────────────────────────────────────────┘
                              │  Watermark + Batch ID passed via task values
                              ▼
 ┌─────────────────────────────────────────────────────────────────────┐
-│   SILVER LAYER  (main.silver)                                     │
+│   SILVER LAYER  (main.silver)                                       │
 │  • Data cleaning — money normalisation, typo correction             │
 │  • Deduplication on primary key + watermark column                  │
 │  • DQ checks → pass rows to silver tables, fail rows to quarantine  │
@@ -61,10 +61,10 @@ Most beginner pipelines perform full reloads on every run. This project demonstr
                              │
                              ▼
 ┌─────────────────────────────────────────────────────────────────────┐
-│   GOLD LAYER  (main.gold)                                         │
+│   GOLD LAYER  (main.gold)                                           │
 │  • dim_products — SCD Type 2 (full change history)                  │
-│  • fact_orders — denormalised fact table (orders + products +        │
-│                  payments joined)                                    │
+│  • fact_orders — denormalised fact table (orders + products +       │
+│                  payments joined)                                   │
 │  • BI views — revenue by category, order status, daily trend        │
 │  • OPTIMIZE + ZORDER for BI query acceleration                      │
 └────────────────────────────┬────────────────────────────────────────┘
@@ -99,12 +99,12 @@ products ───────────────────────�
   product_name                                 │
   category                                     ▼
   price                             orders ────────────── payments
-  updated_at                          order_id (PK)         payment_id (PK)
-                                      customer_id           order_id (FK)
-                                      product_id (FK) ──►   payment_status
-                                      order_status          paid_amount
-                                      order_amount          processed_at
-                                      created_at / updated_at
+  updated_at                      order_id (PK)         payment_id (PK)
+                                  customer_id           order_id (FK)
+                                  product_id (FK) ──►   payment_status
+                                  order_status          paid_amount
+                                  order_amount          processed_at
+                                  created_at / updated_at
 ```
 
 **Gold Tables**
