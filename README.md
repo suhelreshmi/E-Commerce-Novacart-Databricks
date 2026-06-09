@@ -248,3 +248,23 @@ All schemas and tables are bootstrapped automatically on first execution:
 | Orchestration | Databricks Workflows |
 | Language | Python (PySpark) |
 | Version control | GitHub + Databricks Repos |
+
+---
+
+---
+
+## Project Constraints
+
+This solution was developed using Azure Free Tier resources.
+
+Challenges:
+- Limited Databricks compute
+- Limited Event Hub throughput
+- Cost optimization requirements
+
+Solutions:
+- Small cluster configurations
+- Efficient Delta Lake storage
+- Scheduled execution for testing
+
+---
